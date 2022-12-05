@@ -48,7 +48,9 @@ class TransactionController extends Controller
         $validated = $request->validate([
             'amount' => ['required','numeric'],
             'payed' => ['required','boolean'],
-            'customer_id' => 'required'
+            'customer_id' => 'required',
+            'date' => ['required','date'],
+            'time' => 'nullable'
         ]);
         $validated['user_id'] = auth()->id();
         Transaction::create($validated);

@@ -29,4 +29,6 @@
     <x-speed-dial>
         <x-speed-dial-option :tooltip="__('New')" :icon="config('icons.add-circle')" :route="route('transactions.create')"/>
     </x-speed-dial>
+
+
 </x-app-layout>
