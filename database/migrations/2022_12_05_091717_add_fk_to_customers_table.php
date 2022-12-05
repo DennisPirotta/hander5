@@ -13,12 +13,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('transactions', static function (Blueprint $table) {
-            $table->id();
-            $table->string('amount');
-            $table->boolean('payed');
-            $table->dateTime('datetime');
-            $table->timestamps();
+        Schema::table('customers', static function (Blueprint $table) {
+            $table  ->foreignId('user_id')
+                    ->constrained()
+                    ->cascadeOnDelete()
+                    ->cascadeOnUpdate();
         });
     }
 
@@ -29,6 +28,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('transactions');
+        Schema::table('customers', static function (Blueprint $table) {
+            $table->dropConstrainedForeignId('user_id');
+        });
     }
 };

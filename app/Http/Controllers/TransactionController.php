@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Transaction;
+use Carbon\Carbon;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -20,29 +21,38 @@ class TransactionController extends Controller
     public function index()
     {
         return view('transactions.index',[
-            'transactions' => Transaction::all()
+            'transactions' => auth()->user()->transactions->load('customer')->sortByDesc('datetime')
         ]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return Application|Factory|View
      */
     public function create()
     {
-        //
+        return view('transactions.create',[
+            'customers' => auth()->user()->customers
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return Response
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        //
+        $validated = $request->validate([
+            'amount' => ['required','numeric'],
+            'payed' => ['required','boolean'],
+            'customer_id' => 'required'
+        ]);
+        $validated['user_id'] = auth()->id();
+        Transaction::create($validated);
+        return redirect()->route('transactions.index')->with('message','Transazione creata con successo');
     }
 
     /**

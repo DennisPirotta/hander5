@@ -5,30 +5,28 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
+
+    <div class="md:py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="w-full max-w-md p-4 bg-white border rounded-lg shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">
-                <div class="flow-root">
-                    <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
-                        <li class="py-3 sm:py-4">
-                            <div class="flex items-center space-x-4">
-                                <div class="flex-1 min-w-0">
-                                    <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                        Neil Sims
-                                    </p>
-                                    <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                        email@windster.com
-                                    </p>
-                                </div>
-                                <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                    $320
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
+            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+                <div class="w-full max-w-md p-4 bg-white border rounded-lg shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+                    <div class="flow-root">
+                        <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+                            @forelse($transactions as $transaction)
+                                <li class="py-3 sm:py-4">
+                                    <x-transaction-card :transaction="$transaction" />
+                                </li>
+                            @empty
+                                <p class="dark:text-gray-300 text-gray-800">{{ __('No transactions were found') }}</p>
+                            @endforelse
+                        </ul>
+                    </div>
                 </div>
             </div>
-
         </div>
     </div>
+
+    <x-speed-dial>
+        <x-speed-dial-option :tooltip="__('New')" :icon="config('icons.add-circle')" :route="route('transactions.create')"/>
+    </x-speed-dial>
 </x-app-layout>
