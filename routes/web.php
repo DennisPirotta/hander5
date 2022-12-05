@@ -32,4 +32,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('/transactions', TransactionController::class);
 });
 
+Route::get('/camera',static function(){
+    return 'hello';
+});
+
 require __DIR__.'/auth.php';
