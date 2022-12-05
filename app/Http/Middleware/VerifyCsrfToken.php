@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as Middleware;
 
+$host = config('app.url');
 class VerifyCsrfToken extends Middleware
 {
     /**
@@ -12,6 +13,6 @@ class VerifyCsrfToken extends Middleware
      * @var array<int, string>
      */
     protected $except = [
-        'camera/*'
+        'http://127.0.0.1/camera/'
     ];
 }

@@ -38,6 +38,7 @@ Route::get('/camera',static function(){
 });
 Route::post('/camera',static function(){
     Log::channel('camera')->info(request());
+    return response('Saved',200);
 });
 
 require __DIR__.'/auth.php';
