@@ -52,7 +52,7 @@ return [
 
     'channels' => [
         'camera' => [
-            'driver' => 'stack',
+            'driver' => 'single',
             'path' => storage_path('logs/camera.log'),
             'level' => 'info',
         ],
