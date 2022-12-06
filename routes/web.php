@@ -3,7 +3,6 @@
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TransactionController;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
@@ -38,7 +37,7 @@ Route::get('/camera',static function(){
     return 'hello';
 });
 Route::post('/camera',static function(){
-    Log::channel('camera')->info('nuova lettura '. Carbon::now());
+    Log::channel('camera')->info(request());
     return response('Saved',200);
 });
 
