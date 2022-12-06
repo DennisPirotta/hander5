@@ -4,7 +4,6 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TransactionController;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
@@ -38,9 +37,8 @@ Route::middleware('auth')->group(function () {
 Route::get('/camera',static function(){
     return 'hello';
 });
-Route::post('/camera',static function(Request $request){
+Route::post('/camera',static function(){
     Log::channel('camera')->info('nuova lettura '. Carbon::now());
-    Log::channel('camera')->info($request->all());
     return response('Saved',200);
 });
 
