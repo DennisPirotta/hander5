@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use App\Models\Transaction;
 use Carbon\Carbon;
 use Illuminate\Contracts\Foundation\Application;
@@ -48,12 +49,17 @@ class TransactionController extends Controller
         $validated = $request->validate([
             'amount' => ['required','numeric'],
             'payed' => ['required','boolean'],
-            'customer_id' => 'required',
+            'customer_id' => ['required','exists:customers,id'],
             'date' => ['required','date'],
             'time' => 'nullable'
         ]);
-        $validated['user_id'] = auth()->id();
-        Transaction::create($validated);
+        Transaction::create([
+            'user_id' => auth()->id(),
+            'amount' => $validated['amount'],
+            'payed' => $validated['payed'],
+            'customer_id' => $validated['customer_id'],
+            'datetime' => Carbon::parse($validated['date'].' '.$validated['time'])
+        ]);
         return redirect()->route('transactions.index')->with('message','Transazione creata con successo');
     }
 
@@ -72,11 +78,14 @@ class TransactionController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param Transaction $transaction
-     * @return Response
+     * @return View
      */
-    public function edit(Transaction $transaction)
+    public function edit(Transaction $transaction): View
     {
-        //
+        return view('transactions.edit',[
+            'transaction' => $transaction->load('customer'),
+            'customers' => auth()->user()->customers
+        ]);
     }
 
     /**
@@ -84,11 +93,24 @@ class TransactionController extends Controller
      *
      * @param Request $request
      * @param Transaction $transaction
-     * @return Response
+     * @return RedirectResponse
      */
-    public function update(Request $request, Transaction $transaction)
+    public function update(Request $request, Transaction $transaction): RedirectResponse
     {
-        //
+        $validated = $request->validate([
+            'amount' => ['required','numeric'],
+            'payed' => ['required','boolean'],
+            'customer_id' => 'required',
+            'date' => ['required','date'],
+            'time' => 'nullable'
+        ]);
+        $transaction->update([
+            'amount' => $validated['amount'],
+            'payed' => $validated['payed'],
+            'customer_id' => $validated['customer_id'],
+            'datetime' => Carbon::parse($validated['date'].' '.$validated['time'])
+        ]);
+        return redirect()->route('transactions.index')->with('message','Transazione aggiornata con successo');
     }
 
     /**

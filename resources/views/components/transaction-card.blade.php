@@ -9,9 +9,9 @@
     </div>
     <div class="{{ $transaction->payed ? 'text-green-600' : 'text-gray-500'}} inline-flex items-center text-base font-semibold">
         + {{ $transaction->amount }}
-        {!! config('icons.euro') !!}
+        {!! config('icons.normal.euro') !!}
     </div>
     <div>
-        {!! config('icons.chevron-right') !!}
+        {!! config('icons.normal.chevron-right') !!}
     </div>
 </a>

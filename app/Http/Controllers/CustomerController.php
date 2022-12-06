@@ -21,7 +21,9 @@ class CustomerController extends Controller
     public function index(): View
     {
         return view('customers.index',[
-            'customers' => Customer::all()->where('user_id',auth()->id())
+            'customers' => auth()->user()->customers->sortByDesc(static function ($item){
+                return $item->exchanges()->get('debits')['total'];
+            })
         ]);
     }
 
@@ -46,6 +48,7 @@ class CustomerController extends Controller
         $validated = $request->validate([
             'name' => ['required','string']
         ]);
+        $validated['user_id'] = auth()->id();
         Customer::create($validated);
         return back()->with('message','Cliente inserito con successo');
     }
@@ -81,8 +84,11 @@ class CustomerController extends Controller
      * @param Customer $customer
      * @return RedirectResponse
      */
-    public function destroy(Customer $customer): RedirectResponse
+    public function destroy(Request $request,Customer $customer): RedirectResponse
     {
+        $request->validate([
+            'customer-name' => ['required','in:'.$customer->name]
+        ]);
         $customer->delete();
         return redirect()->route('customers.index');
     }

@@ -1,7 +1,7 @@
 <section>
     <header>
         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-            {{ __('Theme Information') }}
+            {{ __('Theme Settings') }}
         </h2>
 
         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
@@ -26,7 +26,7 @@
                 <div class="block">
                     <div class="w-full text-lg font-semibold">{{ __('Light') }}</div>
                 </div>
-                {!! config('icons.light-bulb') !!}
+                {!! config('icons.normal.light-bulb') !!}
             </label>
         </li>
         <li>
@@ -35,7 +35,7 @@
                 <div class="block">
                     <div class="w-full text-lg font-semibold">{{ __('Dark') }}</div>
                 </div>
-                {!! config('icons.sun') !!}
+                {!! config('icons.normal.sun') !!}
             </label>
         </li>
     </ul>
