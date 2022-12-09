@@ -12,10 +12,12 @@
     <ul class="grid gap-6 w-full md:grid-cols-2 mt-6" id="theme-selector"
         x-data="{
                     setLight: () => {
+                        document.getElementById('logo').style.filter = 'invert(1)'
                         localStorage.theme = 'light'
                         document.documentElement.classList.remove('dark')
                     },
                     setDark: () => {
+                        document.getElementById('logo').style.filter = ''
                         localStorage.theme = 'dark'
                         document.documentElement.classList.add('dark')
                     },

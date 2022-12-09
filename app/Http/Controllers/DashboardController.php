@@ -20,7 +20,7 @@ class DashboardController extends Controller
             $chartData[] = [
                 'x' => (string)$amount,
                 'y' => $transaction->count(),
-                'fillColor' => fake()->hexColor()
+                'fillColor' => fake()->hexColor(),
             ];
         }
         return view('dashboard.index',[

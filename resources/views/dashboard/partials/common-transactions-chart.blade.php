@@ -28,6 +28,13 @@
                     yaxis: {
                         show: false,
                     },
+                    xaxis: {
+                        labels: {
+                            style: {
+                                colors: localStorage.theme === 'dark' ? '#FFFFFF' : '#000000'
+                            },
+                        },
+                    },
                     grid: {
                         yaxis: {
                             lines: {

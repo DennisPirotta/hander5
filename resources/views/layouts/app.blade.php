@@ -32,12 +32,17 @@
             </main>
         </div>
     <script>
-        window.document.documentElement.style.colorScheme = localStorage.theme ?? 'light'
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark')
-        } else {
-            document.documentElement.classList.remove('dark')
-        }
+        document.addEventListener('DOMContentLoaded',()=>{
+            if (!localStorage.theme) localStorage.theme = 'dark'
+            window.document.documentElement.style.colorScheme = localStorage.theme
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark')
+                document.getElementById('logo').style.filter = ''
+            } else {
+                document.documentElement.classList.remove('dark')
+                document.getElementById('logo').style.filter = 'invert(1)'
+            }
+        })
     </script>
     </body>
 
