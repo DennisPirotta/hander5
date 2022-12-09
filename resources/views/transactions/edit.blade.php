@@ -8,10 +8,14 @@
 
     <div class="md:py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg space-y-6">
 
                 <div class="w-full max-w-md p-4 bg-white border rounded-lg shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">
-                    @include('transactions.partials.update-transaction-form',['transaction' => $transaction])
+                    @include('transactions.partials.update-transaction-form')
+                </div>
+
+                <div class="w-full max-w-md p-4 bg-white border rounded-lg shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+                    @include('transactions.partials.delete-transaction-form')
                 </div>
 
             </div>

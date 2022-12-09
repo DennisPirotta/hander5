@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Log;
@@ -22,11 +23,8 @@ Route::get('/', static function () {
     return redirect()->route('dashboard');
 });
 
-Route::get('/dashboard', static function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::middleware('auth')->group(function () {
+    Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -34,9 +32,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('/transactions', TransactionController::class);
 });
 
-Route::get('/camera',static function(){
-    return 'hello';
-});
 Route::post('/camera',static function(){
     Log::channel('camera')->info(request());
     return response('Saved',200);

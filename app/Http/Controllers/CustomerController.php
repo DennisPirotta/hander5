@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
-use Cassandra\Custom;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
@@ -42,6 +41,7 @@ class CustomerController extends Controller
      *
      * @param Request $request
      * @return RedirectResponse
+     * @throws \JsonException
      */
     public function store(Request $request): RedirectResponse
     {
@@ -49,8 +49,8 @@ class CustomerController extends Controller
             'name' => ['required','string']
         ]);
         $validated['user_id'] = auth()->id();
-        Customer::create($validated);
-        return back()->with('message','Cliente inserito con successo');
+        $customer = Customer::create($validated);
+        return redirect()->route('customers.index')->with('message','Cliente inserito con successo');
     }
 
     /**
@@ -81,8 +81,10 @@ class CustomerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param Request $request
      * @param Customer $customer
      * @return RedirectResponse
+     * @throws \JsonException
      */
     public function destroy(Request $request,Customer $customer): RedirectResponse
     {

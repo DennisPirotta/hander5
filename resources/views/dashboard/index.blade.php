@@ -5,12 +5,15 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="md:py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("You're logged in!") }}
+
+                <div class="w-full max-w-md p-4 bg-white border rounded-lg shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+                    @include('dashboard.partials.common-transactions-chart')
                 </div>
+
+
             </div>
         </div>
     </div>

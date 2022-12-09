@@ -103,5 +103,12 @@
     "Search Transactions": "Cerca Transazioni",
     "Search Customers": "Cerca Clienti",
     "Edit Transaction": "Modifica Transazione",
-    "Not registered yet?": "Non sei ancora registrato?"
+    "Not registered yet?": "Non sei ancora registrato?",
+    "Recent Transactions": "Transazioni recenti",
+    "Summary of recent transactions with the customer": "Riepilogo delle transazioni recenti con il cliente",
+    "Once your transaction is deleted, all of its resources and data will be permanently deleted. Before deleting your transactions, please download any data or information that you wish to retain.": "\nUna volta eliminata la transazione, tutte le sue risorse e i dati verranno eliminati definitivamente. Prima di eliminare le tue transazioni, scarica tutti i dati o le informazioni che desideri conservare.",
+    "Delete Transaction": "Elimina Transazione",
+    "Once your transaction is deleted, all of its resources and data will be permanently deleted.": "Una volta eliminata la transazione, tutte le sue risorse e i dati verranno eliminati definitivamente.",
+    "Common Transactions": "Transazioni comuni",
+    "Summary of the most frequent common transactions": "Riepilogo delle transazioni comuni più frequenti"
 }

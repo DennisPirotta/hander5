@@ -19,7 +19,7 @@ class TransactionFactory extends Factory
     public function definition(): array
     {
         return [
-            'amount' => fake()->randomNumber(3),
+            'amount' => fake()->randomDigitNotNull() * 10,
             'payed' => fake()->boolean,
             'user_id' => User::all()->random(),
             'customer_id' => Customer::all()->random(),

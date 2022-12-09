@@ -117,10 +117,11 @@ class TransactionController extends Controller
      * Remove the specified resource from storage.
      *
      * @param Transaction $transaction
-     * @return Response
+     * @return RedirectResponse
      */
-    public function destroy(Transaction $transaction)
+    public function destroy(Transaction $transaction): RedirectResponse
     {
-        //
+        $transaction->delete();
+        return redirect()->route('transactions.index')->with('message','Transazione rimossa con successo');
     }
 }

@@ -10,19 +10,19 @@
 
             <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
                 <div class="w-full max-w-md p-4 bg-white border rounded-lg shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">
-                    @include('customers.partials.customer-transaction-list',['customer' => $customer])
+                    @include('customers.partials.customer-transaction-list')
                 </div>
             </div>
 
             <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
                 <div class="w-full max-w-md p-4 bg-white border rounded-lg shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">
-                    @include('customers.partials.update-customer-information-form',['customer' => $customer])
+                    @include('customers.partials.update-customer-information-form')
                 </div>
             </div>
 
             <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
                 <div class="w-full max-w-md p-4 bg-white border rounded-lg shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">
-                    @include('customers.partials.delete-customer-form',['customer' => $customer])
+                    @include('customers.partials.delete-customer-form')
                 </div>
             </div>
 
